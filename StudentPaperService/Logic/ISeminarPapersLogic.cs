@@ -11,10 +11,8 @@ namespace StudentPaperService.Logic
 
         SeminarPaper Delete(long seminarPaperId);
 
-        SeminarPaper Update(SeminarPaper odrednica);
+        SeminarPaper Update(SeminarPaper seminarPaper);
 
-        void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile);
-
-        //void CheckOdrednice(OdrednicaViewModel odrednicaViewModel, int[] izabraneOdrednice);
+        void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile);        
     }
 }

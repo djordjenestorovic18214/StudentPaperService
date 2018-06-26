@@ -9,11 +9,10 @@
     @Html.Label("Фајл: ")<br />
 </div>
 
-<h4>Професор</h4>
+<h4>Професор(ментор)</h4>
 <div class="form-group">
     @Html.Label("Име: " + @Model.SeminarPaper.ProfessorSubject.Professor.FirstName)<br />
     @Html.Label("Презиме: " + @Model.SeminarPaper.ProfessorSubject.Professor.LastName)<br />
-    @Html.Label("Предмети: ")<br />
     <strong>Е-пошта: @Model.SeminarPaper.ProfessorSubject.Professor.Email</strong><br />
 </div>
 
@@ -27,4 +26,4 @@
 
 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
 <a asp-area="" asp-controller="SeminarPapers" asp-action="Index" class="btn btn-info btn-sm">Назад на листу</a>
-<a asp-area="" asp-controller="SeminarPapers" asp-action="Index" class="btn btn-danger btn-sm">Обриши</a>
+<a class="btn btn-danger btn-sm" href="~/papers/seminar/delete/@Model.SeminarPaper.SeminarPaperId">Обриши</a>

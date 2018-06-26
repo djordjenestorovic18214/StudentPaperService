@@ -11,11 +11,6 @@ namespace StudentPaperService.Logic
     {
         private readonly StudentPaperServiceContext _context;
 
-        public SeminarPapersLogic()
-        {
-            _context = new StudentPaperServiceContext(new DbContextOptions<StudentPaperServiceContext>());
-        }
-
         public SeminarPapersLogic(StudentPaperServiceContext context)
         {
             _context = context;
@@ -72,7 +67,7 @@ namespace StudentPaperService.Logic
             throw new NotImplementedException();
         }
 
-        public SeminarPaper Update(SeminarPaper odrednica)
+        public SeminarPaper Update(SeminarPaper seminarPaper)
         {
             throw new NotImplementedException();
         }
@@ -81,16 +76,20 @@ namespace StudentPaperService.Logic
         {
             try
             {
-                var requestedPaper = _context.SeminarPapers
-                    .Include(s => s.ProfessorSubject)
-                    //.Include(s => s.Student)                    
+                SeminarPaper requestedPaper = _context.SeminarPapers
+                    .Include(s => s.Student)                                   
                     .FirstOrDefault(s => s.SeminarPaperId == seminarPaperId);
-
-                return requestedPaper;
+                if(requestedPaper != null)
+                {
+                    _context.Remove(requestedPaper);
+                    _context.SaveChanges();
+                    return requestedPaper;
+                }                
+                throw new Exception("Paper that you want to delete doesn't exist!");               
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error while finding paper with Id : {seminarPaperId}! Error: {ex.Message}");
+                throw new Exception($"Error while trying to find paper! Error: {ex.Message}");
             }
         }
     }

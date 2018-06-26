@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using StudentPaperService.Logic;
 using StudentPaperService.Models;
 using StudentPaperService.Models.AccountViewModels;
 using StudentPaperService.Models.Context;
@@ -149,7 +150,7 @@ namespace StudentPaperService.Controllers
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("You have created a new account with role professor.");
+                    _logger.LogInformation("You have created a new account with role professor.");                    
 
                     IdentityRole userRole = _context.Roles.SingleOrDefault(r => r.Name.ToLower().Equals("profesor"));
 

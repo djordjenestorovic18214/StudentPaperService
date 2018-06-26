@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StudentPaperService.Logic;
+using StudentPaperService.Models;
 using StudentPaperService.Models.Context;
 using StudentPaperService.ViewModels;
 using System;
@@ -16,7 +18,7 @@ namespace StudentPaperService.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet]        
         public IActionResult Index()
         {
             try
@@ -30,6 +32,62 @@ namespace StudentPaperService.Controllers
             {
                 //TODO: Hendlaj gresku
                 return View();
+            }
+        }
+
+        [HttpGet("create")]
+        public IActionResult Insert()
+        {
+            try
+            {
+                ISeminarPapersLogic seminarPaperLogic = new SeminarPapersLogic(_context);
+                ISubjectLogic subjectLogic = new SubjectLogic(_context);
+                IProfessorLogic professorLogic = new ProfessorLogic(_context);
+                IProfessorSubjectLogic professorSubjectLogic = new ProfessorSubjectLogic(_context);
+                SeminarPaperViewModel spvm = new SeminarPaperViewModel();                
+                spvm.AllProfessors = professorLogic.GetAll();
+                spvm.AllSubjects = subjectLogic.GetAll();
+                return View(spvm);
+            }
+            catch (Exception ex)
+            {
+                //TODO: Hendlaj gresku
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Insert(SeminarPaperViewModel seminarPaperViewModel, byte[] paperFile)
+        {
+            ISeminarPapersLogic seminarPaperLogic = new SeminarPapersLogic(_context);
+            IProfessorLogic professorLogic = new ProfessorLogic(_context);
+            ISubjectLogic subjectLogic = new SubjectLogic(_context);
+            IProfessorSubjectLogic professorSubjectLogic = new ProfessorSubjectLogic(_context);
+
+            seminarPaperViewModel.SeminarPaper.PublishDate = DateTime.Now;
+            SeminarPaperViewModel spvm = new SeminarPaperViewModel();
+            spvm.SeminarPaper = new SeminarPaper();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    spvm.AllProfessors = professorLogic.GetAll();
+                    spvm.AllSubjects = subjectLogic.GetAll();
+                    spvm.SeminarPaper.Name = seminarPaperViewModel.SeminarPaper.Name ?? "";
+                    spvm.SeminarPaper.PaperFile = paperFile;
+                    return View("Insert", spvm);
+                }
+                seminarPaperLogic.Insert(seminarPaperViewModel.SeminarPaper, paperFile);
+                return RedirectToAction("Index", "SeminarPapers");
+            }
+            catch (Exception ex)
+            {
+                spvm.AllProfessors = professorLogic.GetAll();
+                spvm.AllSubjects = subjectLogic.GetAll();
+                spvm.SeminarPaper.Name = seminarPaperViewModel.SeminarPaper.Name ?? "";
+                spvm.SeminarPaper.PaperFile = paperFile;
+                return View("Insert", spvm);
             }
         }
 
