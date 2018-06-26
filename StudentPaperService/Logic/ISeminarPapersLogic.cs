@@ -7,9 +7,9 @@ namespace StudentPaperService.Logic
     {
         List<SeminarPaper> GetAll();
 
-        SeminarPaper GetById(int seminarPaperId);
+        SeminarPaper GetById(long seminarPaperId);
 
-        SeminarPaper Delete(int seminarPaperId);
+        SeminarPaper Delete(long seminarPaperId);
 
         SeminarPaper Update(SeminarPaper odrednica);
 

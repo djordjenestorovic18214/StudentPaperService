@@ -12,7 +12,7 @@ using System;
 namespace StudentPaperService.Migrations
 {
     [DbContext(typeof(StudentPaperServiceContext))]
-    [Migration("20180625224802_init")]
+    [Migration("20180626154403_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -193,9 +193,7 @@ namespace StudentPaperService.Migrations
 
                     b.Property<long>("FinalPaperTypeId");
 
-                    b.Property<long>("MentorId");
-
-                    b.Property<string>("MentorId1");
+                    b.Property<string>("MentorId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -205,17 +203,15 @@ namespace StudentPaperService.Migrations
 
                     b.Property<DateTime>("PublishDate");
 
-                    b.Property<long>("StudentId");
-
-                    b.Property<string>("StudentId1");
+                    b.Property<string>("StudentId");
 
                     b.HasKey("FinalPaperId");
 
                     b.HasIndex("FinalPaperTypeId");
 
-                    b.HasIndex("MentorId1");
+                    b.HasIndex("MentorId");
 
-                    b.HasIndex("StudentId1");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("FinalPapers");
                 });
@@ -257,21 +253,17 @@ namespace StudentPaperService.Migrations
                     b.Property<byte[]>("PaperFile")
                         .IsRequired();
 
-                    b.Property<long>("ProfessorSubjectId");
-
                     b.Property<string>("ProfessorSubjectProfessorId");
 
                     b.Property<long?>("ProfessorSubjectSubjectId");
 
                     b.Property<DateTime>("PublishDate");
 
-                    b.Property<long>("StudentId");
-
-                    b.Property<string>("StudentId1");
+                    b.Property<string>("StudentId");
 
                     b.HasKey("SeminarPaperId");
 
-                    b.HasIndex("StudentId1");
+                    b.HasIndex("StudentId");
 
                     b.HasIndex("ProfessorSubjectProfessorId", "ProfessorSubjectSubjectId");
 
@@ -394,11 +386,11 @@ namespace StudentPaperService.Migrations
 
                     b.HasOne("StudentPaperService.Models.Professor", "Mentor")
                         .WithMany("FinalPapers")
-                        .HasForeignKey("MentorId1");
+                        .HasForeignKey("MentorId");
 
                     b.HasOne("StudentPaperService.Models.Student", "Student")
                         .WithMany("FinalPapers")
-                        .HasForeignKey("StudentId1");
+                        .HasForeignKey("StudentId");
                 });
 
             modelBuilder.Entity("StudentPaperService.Models.ProfessorSubject", b =>
@@ -418,7 +410,7 @@ namespace StudentPaperService.Migrations
                 {
                     b.HasOne("StudentPaperService.Models.Student", "Student")
                         .WithMany("SeminarPapers")
-                        .HasForeignKey("StudentId1");
+                        .HasForeignKey("StudentId");
 
                     b.HasOne("StudentPaperService.Models.ProfessorSubject", "ProfessorSubject")
                         .WithMany("SeminarPapers")

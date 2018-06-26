@@ -131,16 +131,8 @@ namespace StudentPaperService.Models.Context
                 .IsRequired();
 
             modelBuilder.Entity<SeminarPaper>()
-                .Property(p => p.ProfessorSubjectId)
-                .IsRequired();
-
-            modelBuilder.Entity<SeminarPaper>()
                 .HasOne(p => p.ProfessorSubject)
-                .WithMany(p => p.SeminarPapers);
-
-            modelBuilder.Entity<SeminarPaper>()
-                .Property(p => p.StudentId)
-                .IsRequired();
+                .WithMany(p => p.SeminarPapers);            
 
             modelBuilder.Entity<SeminarPaper>()
                 .HasOne(p => p.Student)
@@ -167,16 +159,8 @@ namespace StudentPaperService.Models.Context
                 .IsRequired();
 
             modelBuilder.Entity<FinalPaper>()
-                .Property(p => p.StudentId)
-                .IsRequired();
-
-            modelBuilder.Entity<FinalPaper>()
                 .HasOne(p => p.Student)
                 .WithMany(p => p.FinalPapers);
-
-            modelBuilder.Entity<FinalPaper>()
-                .Property(p => p.MentorId)
-                .IsRequired();
 
             modelBuilder.Entity<FinalPaper>()
                 .HasOne(p => p.Mentor)

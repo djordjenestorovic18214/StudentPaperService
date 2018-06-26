@@ -25,19 +25,18 @@ namespace StudentPaperService.Logic
         {
             try
             {
-                //return _context.SeminarPapers
-                //    .Include(s => s.ProfessorSubject)
-                //    //.Include(s => s.Student)
-                //    .ToList();
-                ProfessorSubject ps = new ProfessorSubject() { Professor = new Professor() { FirstName = "Душан Бараћ" }, Subject = new Subject() { Name = "Интернет технологије" } };
-                Student s1 = new Student() { FirstName = "Валентина", LastName = "Љубисављевић", IndexNumber = "0095/2014" };
-                Student s2 = new Student() { FirstName = "Ђорђе", LastName = "Несторовић", IndexNumber = "0182/2014" };
-                SeminarPaper sp1 = new SeminarPaper() { Name = "Студентски сервис за радове", PublishDate = DateTime.Now, ProfessorSubject = ps, Student = s1 };
-                SeminarPaper sp2 = new SeminarPaper() { Name = "Студентски сервис за радове", PublishDate = DateTime.Now, ProfessorSubject = ps, Student = s2 };
-                List<SeminarPaper> list = new List<SeminarPaper>();
-                list.Add(sp1);
-                list.Add(sp2);
-                return list;
+                List<SeminarPaper> lista = _context.SeminarPapers
+                    .Include(s => s.ProfessorSubject)
+                    .Include(s => s.Student)
+                    .ToList();
+                
+                foreach(SeminarPaper sp in lista)
+                {
+                    sp.ProfessorSubject.Professor = _context.Professors.SingleOrDefault(p => p.Id.Equals(sp.ProfessorSubject.ProfessorId));
+                    sp.ProfessorSubject.Subject = _context.Subjects.SingleOrDefault(s => s.SubjectId == sp.ProfessorSubject.SubjectId);
+                }
+                return lista;
+
             }
             catch (Exception ex)
             {
@@ -45,7 +44,40 @@ namespace StudentPaperService.Logic
             }
         }
 
-        public SeminarPaper Delete(int seminarPaperId)
+        public SeminarPaper GetById(long seminarPaperId)
+        {
+            try
+            {
+                List<SeminarPaper> lista = _context.SeminarPapers
+                    .Include(s => s.ProfessorSubject)
+                    .Include(s => s.Student)
+                    .ToList();
+
+                foreach (SeminarPaper sp in lista)
+                {
+                    sp.ProfessorSubject.Professor = _context.Professors.SingleOrDefault(p => p.Id.Equals(sp.ProfessorSubject.ProfessorId));
+                    sp.ProfessorSubject.Subject = _context.Subjects.SingleOrDefault(s => s.SubjectId == sp.ProfessorSubject.SubjectId);
+                }
+
+                return lista.Find(s => s.SeminarPaperId == seminarPaperId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Cannot return all seminar papers! Error: {ex.Message}");
+            }
+        }
+
+        public void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SeminarPaper Update(SeminarPaper odrednica)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SeminarPaper Delete(long seminarPaperId)
         {
             try
             {
@@ -60,21 +92,6 @@ namespace StudentPaperService.Logic
             {
                 throw new Exception($"Error while finding paper with Id : {seminarPaperId}! Error: {ex.Message}");
             }
-        }
-
-        public SeminarPaper GetById(int seminarPaperId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile)
-        {
-            throw new NotImplementedException();
-        }
-
-        public SeminarPaper Update(SeminarPaper odrednica)
-        {
-            throw new NotImplementedException();
         }
     }
 }
