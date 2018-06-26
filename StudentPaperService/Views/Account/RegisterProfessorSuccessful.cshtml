@@ -1,0 +1,14 @@
+﻿@model RegisterProfessorViewModel
+
+<h3>Успешно сте регистровали професора!</h3>
+
+<h4>Професор:</h4>
+
+<div class="form-group">
+    @Html.Label("Име: " + @Model.FirstName)<br />
+    @Html.Label("Презиме: " + @Model.LastName)<br />
+    @Html.Label("Предмети: ")<br />
+    @Html.Label("Корисничко име: " + @Model.UserName)<br />
+</div>
+<a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
+<a asp-area="" asp-controller="Account" asp-action="RegisterStudent" class="btn btn-info btn-sm">Региструј новог професора</a>

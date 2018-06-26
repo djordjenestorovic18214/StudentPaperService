@@ -123,7 +123,7 @@ namespace StudentPaperService.Controllers
                     _context.UserRoles.Add(new IdentityUserRole<string>() { RoleId = userRole.Id, UserId = user.Id });
                     _context.SaveChanges();
 
-                    return View("Popup");
+                    return View("RegisterStudentSuccessful", model);
                 }
                 
                 return View(model);
@@ -156,9 +156,9 @@ namespace StudentPaperService.Controllers
                     _context.UserRoles.Add(new IdentityUserRole<string>() { RoleId = userRole.Id, UserId = user.Id });
                     _context.SaveChanges();
 
-                    return RedirectToAction("Login", "Account");
+                    return View("RegisterProfessorSuccessful", model);
                 }
-                
+                //TODO: hendlaj greske
                 return View(model);
             }
             return View("./Error");
