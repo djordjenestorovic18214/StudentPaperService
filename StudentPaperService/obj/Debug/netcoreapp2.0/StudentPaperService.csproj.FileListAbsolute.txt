@@ -9,3 +9,4 @@ C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debu
 C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
 C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
 C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csprojAssemblyReference.cache
