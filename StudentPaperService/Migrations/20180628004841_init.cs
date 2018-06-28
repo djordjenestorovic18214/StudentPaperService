@@ -193,13 +193,11 @@ namespace StudentPaperService.Migrations
                     FinalPaperId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FinalPaperTypeId = table.Column<long>(nullable: false),
-                    MentorId = table.Column<long>(nullable: false),
-                    MentorId1 = table.Column<string>(nullable: true),
+                    MentorId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     PaperFile = table.Column<byte[]>(nullable: false),
                     PublishDate = table.Column<DateTime>(nullable: false),
-                    StudentId = table.Column<long>(nullable: false),
-                    StudentId1 = table.Column<string>(nullable: true)
+                    StudentId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -211,14 +209,14 @@ namespace StudentPaperService.Migrations
                         principalColumn: "FinalPaperTypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FinalPapers_AspNetUsers_MentorId1",
-                        column: x => x.MentorId1,
+                        name: "FK_FinalPapers_AspNetUsers_MentorId",
+                        column: x => x.MentorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FinalPapers_AspNetUsers_StudentId1",
-                        column: x => x.StudentId1,
+                        name: "FK_FinalPapers_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -256,19 +254,17 @@ namespace StudentPaperService.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
                     PaperFile = table.Column<byte[]>(nullable: false),
-                    ProfessorSubjectId = table.Column<long>(nullable: false),
                     ProfessorSubjectProfessorId = table.Column<string>(nullable: true),
                     ProfessorSubjectSubjectId = table.Column<long>(nullable: true),
                     PublishDate = table.Column<DateTime>(nullable: false),
-                    StudentId = table.Column<long>(nullable: false),
-                    StudentId1 = table.Column<string>(nullable: true)
+                    StudentId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SeminarPapers", x => x.SeminarPaperId);
                     table.ForeignKey(
-                        name: "FK_SeminarPapers_AspNetUsers_StudentId1",
-                        column: x => x.StudentId1,
+                        name: "FK_SeminarPapers_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -332,14 +328,14 @@ namespace StudentPaperService.Migrations
                 column: "FinalPaperTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FinalPapers_MentorId1",
+                name: "IX_FinalPapers_MentorId",
                 table: "FinalPapers",
-                column: "MentorId1");
+                column: "MentorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FinalPapers_StudentId1",
+                name: "IX_FinalPapers_StudentId",
                 table: "FinalPapers",
-                column: "StudentId1");
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProfessorSubjects_SubjectId",
@@ -347,9 +343,9 @@ namespace StudentPaperService.Migrations
                 column: "SubjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SeminarPapers_StudentId1",
+                name: "IX_SeminarPapers_StudentId",
                 table: "SeminarPapers",
-                column: "StudentId1");
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SeminarPapers_ProfessorSubjectProfessorId_ProfessorSubjectSubjectId",

@@ -7,14 +7,12 @@ namespace StudentPaperService.Logic
     {
         List<SeminarPaper> GetAll();
 
-        SeminarPaper GetById(int seminarPaperId);
+        SeminarPaper GetById(long seminarPaperId);
 
-        SeminarPaper Delete(int seminarPaperId);
+        SeminarPaper Delete(long seminarPaperId);
 
-        SeminarPaper Update(SeminarPaper odrednica);
+        SeminarPaper Update(SeminarPaper seminarPaper);
 
-        void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile);
-
-        //void CheckOdrednice(OdrednicaViewModel odrednicaViewModel, int[] izabraneOdrednice);
+        void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile);        
     }
 }

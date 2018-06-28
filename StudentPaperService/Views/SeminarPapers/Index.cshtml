@@ -1,11 +1,11 @@
-﻿@model List<SeminarPaper>
+﻿@model SeminarPaperViewModel
 
 <h1 style="margin-top:30px; margin-bottom:30px">Семинарски радови</h1>
 
-<table class="table display" id="seminaPapersTable">
+<table class="table table-bordered table-responsive table-striped display" id="seminaPapersTable">
     <thead>
         <tr>
-            <th>RB</th>
+            <th>РБ</th>
             <th>Студент</th>
             <th>Предмет</th>
             <th>Ментор</th>
@@ -14,17 +14,17 @@
         </tr>
     </thead>
     <tbody>
-        @for (int i = 0; i < Model.Count; i++)
+        @for (int i = 0; i < Model.AllSeminarPapers.Count; i++)
         {
             <tr>
                 <td>@(i + 1)</td>
-                <td>@Model.ElementAt(i).Student.LastName @Model.ElementAt(i).Student.FirstName [@Model.ElementAt(i).Student.IndexNumber]</td>
-                <td>@Model.ElementAt(i).ProfessorSubject.Subject.Name</td>
-                <td>@Model.ElementAt(i).ProfessorSubject.Professor.FirstName</td>
-                <td>@Model.ElementAt(i).Name</td>
-                <td><a href="~/papers/seminar/@Model.ElementAt(i).SeminarPaperId">Рад</a></td>
+                <td>@Model.AllSeminarPapers.ElementAt(i).Student.LastName @Model.AllSeminarPapers.ElementAt(i).Student.FirstName [@Model.AllSeminarPapers.ElementAt(i).Student.IndexNumber]</td>
+                <td>@Model.AllSeminarPapers.ElementAt(i).ProfessorSubject.Subject.Name</td>
+                <td>@Model.AllSeminarPapers.ElementAt(i).ProfessorSubject.Professor.FirstName @Model.AllSeminarPapers.ElementAt(i).ProfessorSubject.Professor.LastName</td>
+                <td>@Model.AllSeminarPapers.ElementAt(i).Name</td>
+                <td><a href="~/SeminarPapers/Find/@Model.AllSeminarPapers.ElementAt(i).SeminarPaperId">Рад</a></td>
             </tr>
         }
     </tbody>
 </table>
-<a href="~/papers/seminar/create" class="btn btn-primary">Додај нови семинарски рад</a>
+<a href="~/SeminarPapers/Insert" class="btn btn-primary">Додај нови семинарски рад</a>
