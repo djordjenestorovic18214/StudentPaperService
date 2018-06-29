@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -132,7 +133,7 @@ namespace StudentPaperService.Controllers
 
                     return View("RegisterStudentSuccessful", model);
                 }
-                
+
                 return View(model);
             }
             return View("./Error");
@@ -151,19 +152,32 @@ namespace StudentPaperService.Controllers
                     Email = model.Email,
                     UserName = model.UserName,
 
+
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("You have created a new account with role professor.");                    
+                    _logger.LogInformation("You have created a new account with role professor.");
 
                     IdentityRole userRole = _context.Roles.SingleOrDefault(r => r.Name.ToLower().Equals("profesor"));
 
                     _context.UserRoles.Add(new IdentityUserRole<string>() { RoleId = userRole.Id, UserId = user.Id });
-                    //TODO dodaj predmete
+
+                    for (int i = 0; i < model.SubjectsIds.Length; i++)
+                    {
+                        _context.ProfessorSubjects.Add(new ProfessorSubject() { ProfessorId = user.Id, SubjectId = model.SubjectsIds[i] });
+                    }
+                  
                     _context.SaveChanges();
+
+                    model.Subjects = new List<Subject>();
+
+                    for (int i = 0; i < model.SubjectsIds.Length; i++)
+                    {
+                        model.Subjects.Add(_context.Subjects.SingleOrDefault(s => s.SubjectId == model.SubjectsIds[i]));
+                    }
 
                     return View("RegisterProfessorSuccessful", model);
                 }

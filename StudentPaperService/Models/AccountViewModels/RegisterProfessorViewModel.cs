@@ -30,6 +30,7 @@ namespace StudentPaperService.Models.AccountViewModels
         
         [Display(Name = "Subjects")]
         public List<Subject> Subjects { get; set; }
+        public int[] SubjectsIds { get; set; }
 
         [Required(ErrorMessage = "Унесите шифру")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Шифра треба да има између 6 и 100 карактера")]
