@@ -1,6 +1,6 @@
 ﻿@model SeminarPaperViewModel
 
-<form method="post" action="~/paper/seminar" enctype="multipart/form-data">
+<form method="post" action="@Url.RouteUrl(ViewContext.RouteData.Values)" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-4">
             <section>

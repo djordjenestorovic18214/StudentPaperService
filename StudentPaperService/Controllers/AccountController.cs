@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using StudentPaperService.Logic;
 using StudentPaperService.Models;
 using StudentPaperService.Models.AccountViewModels;
 using StudentPaperService.Models.Context;
 using StudentPaperService.Services;
+using StudentPaperService.ViewModels;
 
 namespace StudentPaperService.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
@@ -26,7 +23,6 @@ namespace StudentPaperService.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly StudentPaperServiceContext _context;
-
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -40,7 +36,6 @@ namespace StudentPaperService.Controllers
             _logger = logger;
             _context = context;
         }
-
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -84,21 +79,30 @@ namespace StudentPaperService.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        public IActionResult Users()
+        {
+            UsersViewModel uvm = new UsersViewModel();
+            uvm.AllProfessors = _context.Professors.Include(p => p.ProfessorSubjects).Include(p => p.FinalPapers).ToList();
+            uvm.AllStudents = _context.Students.Include(s => s.SeminarPapers).Include(s => s.FinalPapers).ToList();
+
+            return View("Users", uvm);
+        }
+
+        [HttpGet]
         public IActionResult RegisterStudent()
         {
             return View("RegisterStudent");
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult RegisterProfessor()
         {
-            return View("RegisterProfessor");
+            RegisterProfessorViewModel rpvm = new RegisterProfessorViewModel();
+            rpvm.Subjects = _context.Subjects.ToList();
+            return View("RegisterProfessor", rpvm);
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterStudent(RegisterStudentViewModel model, string returnUrl = null)
         {
@@ -109,7 +113,9 @@ namespace StudentPaperService.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     IndexNumber = model.IndexNumber,
+                    Email = model.Email,
                     UserName = model.UserName
+
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -133,7 +139,6 @@ namespace StudentPaperService.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterProfessor(RegisterProfessorViewModel model)
         {
@@ -143,7 +148,9 @@ namespace StudentPaperService.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    UserName = model.UserName
+                    Email = model.Email,
+                    UserName = model.UserName,
+
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -155,6 +162,7 @@ namespace StudentPaperService.Controllers
                     IdentityRole userRole = _context.Roles.SingleOrDefault(r => r.Name.ToLower().Equals("profesor"));
 
                     _context.UserRoles.Add(new IdentityUserRole<string>() { RoleId = userRole.Id, UserId = user.Id });
+                    //TODO dodaj predmete
                     _context.SaveChanges();
 
                     return View("RegisterProfessorSuccessful", model);
@@ -166,6 +174,7 @@ namespace StudentPaperService.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {

@@ -5,7 +5,7 @@
 <table class="table table-bordered table-responsive table-striped display" id="seminaPapersTable">
     <thead>
         <tr>
-            <th>RB</th>
+            <th>РБ</th>
             <th>Студент</th>
             <th>Предмет</th>
             <th>Ментор</th>
@@ -22,9 +22,9 @@
                 <td>@Model.AllSeminarPapers.ElementAt(i).ProfessorSubject.Subject.Name</td>
                 <td>@Model.AllSeminarPapers.ElementAt(i).ProfessorSubject.Professor.FirstName @Model.AllSeminarPapers.ElementAt(i).ProfessorSubject.Professor.LastName</td>
                 <td>@Model.AllSeminarPapers.ElementAt(i).Name</td>
-                <td><a href="~/papers/seminar/@Model.AllSeminarPapers.ElementAt(i).SeminarPaperId">Рад</a></td>
+                <td><a href="~/SeminarPapers/Find/@Model.AllSeminarPapers.ElementAt(i).SeminarPaperId">Рад</a></td>
             </tr>
         }
     </tbody>
 </table>
-<a href="~/papers/seminar/create" class="btn btn-primary">Додај нови семинарски рад</a>
+<a href="~/SeminarPapers/Insert" class="btn btn-primary">Додај нови семинарски рад</a>

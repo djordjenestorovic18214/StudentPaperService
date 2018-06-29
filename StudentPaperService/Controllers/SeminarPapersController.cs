@@ -1,31 +1,58 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using StudentPaperService.Logic;
 using StudentPaperService.Models;
 using StudentPaperService.Models.Context;
+using StudentPaperService.Services;
 using StudentPaperService.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace StudentPaperService.Controllers
 {
-    [Route("papers/seminar")]
+    [Authorize(Roles = "admin,student,profesor")]
+    [Route("[controller]/[action]")]
     public class SeminarPapersController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ILogger _logger;
         private readonly StudentPaperServiceContext _context;
 
-        public SeminarPapersController(StudentPaperServiceContext context)
+        public SeminarPapersController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IEmailSender emailSender,
+            ILogger<AccountController> logger, StudentPaperServiceContext context)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
             _context = context;
         }
-
-        [HttpGet]        
+        
+        [HttpGet]
         public IActionResult Index()
         {
             try
             {
                 ISeminarPapersLogic seminarPaperLogic = new SeminarPapersLogic(_context);
                 SeminarPaperViewModel spvm = new SeminarPaperViewModel();
-                spvm.AllSeminarPapers = seminarPaperLogic.GetAll();
+                List<SeminarPaper> papers = seminarPaperLogic.GetAll();
+                List<SeminarPaper> papersToShow = new List<SeminarPaper>();
+
+                if (User.IsInRole("admin"))
+                    papersToShow = papers;
+
+                else if (User.IsInRole("profesor"))
+                    papersToShow = papers.FindAll(p => p.ProfessorSubject.ProfessorId.Equals(_userManager.GetUserId(User)));
+
+                else if (User.IsInRole("student"))
+                    papersToShow = papers.FindAll(p => p.Student.Id.Equals(_userManager.GetUserId(User)));
+
+                spvm.AllSeminarPapers = papersToShow;
                 return View(spvm);
             }
             catch (Exception ex)
@@ -35,7 +62,7 @@ namespace StudentPaperService.Controllers
             }
         }
 
-        [HttpGet("create")]
+        [HttpGet]
         public IActionResult Insert()
         {
             try
@@ -44,7 +71,7 @@ namespace StudentPaperService.Controllers
                 ISubjectLogic subjectLogic = new SubjectLogic(_context);
                 IProfessorLogic professorLogic = new ProfessorLogic(_context);
                 IProfessorSubjectLogic professorSubjectLogic = new ProfessorSubjectLogic(_context);
-                SeminarPaperViewModel spvm = new SeminarPaperViewModel();                
+                SeminarPaperViewModel spvm = new SeminarPaperViewModel();
                 spvm.AllProfessors = professorLogic.GetAll();
                 spvm.AllSubjects = subjectLogic.GetAll();
                 return View(spvm);
@@ -109,7 +136,7 @@ namespace StudentPaperService.Controllers
             }
         }
 
-        [HttpGet("delete/{seminarPaperId}")]
+        [HttpGet("{seminarPaperId}")]
         public IActionResult Delete(int seminarPaperId)
         {
             try

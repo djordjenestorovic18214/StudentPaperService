@@ -1,0 +1,69 @@
+﻿@model UsersViewModel
+
+<h1 style="margin-top:30px; margin-bottom:30px">Корисници</h1>
+<hr />
+
+<h3 style="margin-top:30px; margin-bottom:30px">Студенти</h3>
+
+<table class="table table-bordered table-responsive table-striped display" id="studentsTable">
+    <thead>
+        <tr>
+            <th>РБ</th>
+            <th>Име</th>
+            <th>Презиме</th>
+            <th>Број индекса</th>
+            <th>Е-пошта</th>
+            <th>Корисничко име</th>
+            <th>Број семинарских радова</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.AllStudents.Count; i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@Model.AllStudents.ElementAt(i).FirstName</td>
+                <td>@Model.AllStudents.ElementAt(i).LastName</td>
+                <td>@Model.AllStudents.ElementAt(i).IndexNumber</td>
+                <td>@Model.AllStudents.ElementAt(i).Email</td>
+                <td>@Model.AllStudents.ElementAt(i).UserName</td>
+                <td>@Model.AllStudents.ElementAt(i).SeminarPapers.Count</td>
+                <td><a href="~/SeminarPapers/Delete/@Model.AllStudents.ElementAt(i).Id">Обриши</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="~/Account/RegisterStudent" class="btn btn-primary">Додај новог студента</a>
+
+
+<h3 style="margin-top:30px; margin-bottom:30px">Професори</h3>
+
+<table class="table table-bordered table-responsive table-striped display" id="professorsTable">
+    <thead>
+        <tr>
+            <th>РБ</th>
+            <th>Име</th>
+            <th>Презиме</th>            
+            <th>Е-пошта</th>
+            <th>Корисничко име</th>
+            <th>Број семинарских радова</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.AllProfessors.Count; i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@Model.AllProfessors.ElementAt(i).FirstName</td>
+                <td>@Model.AllProfessors.ElementAt(i).LastName</td>                
+                <td>@Model.AllProfessors.ElementAt(i).Email</td>
+                <td>@Model.AllProfessors.ElementAt(i).UserName</td>
+                <td>@*@Model.AllProfessors.ElementAt(i).proffSeminarPapers.Count*@</td>
+                <td><a href="~/SeminarPapers/Delete/@Model.AllProfessors.ElementAt(i).Id">Обриши</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="~/Account/RegisterProfessor" class="btn btn-primary">Додај новог професора</a>

@@ -12,7 +12,7 @@ using System;
 namespace StudentPaperService.Migrations
 {
     [DbContext(typeof(StudentPaperServiceContext))]
-    [Migration("20180626201015_init")]
+    [Migration("20180628004841_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
