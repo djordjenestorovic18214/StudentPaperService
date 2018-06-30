@@ -1,7 +1,7 @@
-﻿@model RegisterProfessorViewModel
+﻿@model ProfessorViewModel
 
 <h3>Регуструј професора</h3>
-
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form asp-controller="Account" asp-action="RegisterProfessor" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
@@ -23,14 +23,13 @@
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
 
-            <h5>Предмети</h5>
+            @Html.Label("Предмети")
             <select id="SubjectsIds" name="SubjectsIds" class="selectpicker form-control" multiple>
-               @foreach(var item in Model.Subjects)
-               {
-                <option value="@item.SubjectId">@item.Name</option>
-               }
+                @foreach (var item in Model.Subjects)
+                {
+                    <option value="@item.SubjectId">@item.Name</option>
+                }
             </select>
-
 
             <div class="form-group">
                 @Html.Label("UserName", "Корисничко име")
@@ -49,7 +48,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Региструј професора</button>
         </form>
-
 
     </div>
 </div>

@@ -76,8 +76,7 @@ namespace StudentPaperService.Logic
         {
             try
             {
-                SeminarPaper requestedPaper = _context.SeminarPapers
-                    .Include(s => s.Student)                                   
+                SeminarPaper requestedPaper = _context.SeminarPapers                                   
                     .FirstOrDefault(s => s.SeminarPaperId == seminarPaperId);
                 if(requestedPaper != null)
                 {

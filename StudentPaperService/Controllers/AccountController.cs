@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using StudentPaperService.Logic;
 using StudentPaperService.Models;
 using StudentPaperService.Models.AccountViewModels;
 using StudentPaperService.Models.Context;
 using StudentPaperService.Services;
-using StudentPaperService.ViewModels;
 
 namespace StudentPaperService.Controllers
 {
@@ -98,14 +98,70 @@ namespace StudentPaperService.Controllers
         [HttpGet]
         public IActionResult RegisterProfessor()
         {
-            RegisterProfessorViewModel rpvm = new RegisterProfessorViewModel();
+            ProfessorViewModel rpvm = new ProfessorViewModel();
             rpvm.Subjects = _context.Subjects.ToList();
             return View("RegisterProfessor", rpvm);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult DeleteStudent(string id)
+        {
+            StudentLogic studentLogic = new StudentLogic(_context);
+            StudentViewModel svm = new StudentViewModel();
+            Student s = studentLogic.GetById(id);
+            svm.Student = s;
+
+            return View("DeleteStudent", svm);
+        }
+        
+        [HttpPost("{id}")]
+        public IActionResult DeleteStudent(string id, string returnUrl = null)
+        {
+            SeminarPapersLogic seminarPapersLogic = new SeminarPapersLogic(_context);
+            //FinalPapersLogic finalPapersLogic = new FinalPapersLogic(_context);
+            StudentLogic studentLogic = new StudentLogic(_context);
+            Student s = studentLogic.GetById(id);
+            
+            studentLogic.Delete(s.Id);
+            s.SeminarPapers.ForEach(sp => seminarPapersLogic.Delete(sp.SeminarPaperId));
+            //s.FinalPapers.ForEach(sp => finalPapersLogic.Delete(sp.FinalPaperId));
+
+            return RedirectToAction("Users");
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult DeleteProfessor(string id)
+        {
+            ProfessorLogic professorLogic = new ProfessorLogic(_context);
+            ProfessorViewModel pvm = new ProfessorViewModel();
+            Professor p = professorLogic.GetById(id);
+            pvm.Professor = p;
+
+            return View("DeleteProfessor", pvm);
+        }
+        
+        [HttpPost("{id}")]
+        public IActionResult DeleteProfessor(string id, string returnUrl = null)
+        {
+            SeminarPapersLogic seminarPapersLogic = new SeminarPapersLogic(_context);
+            ProfessorSubjectLogic professorSubjectLogic = new ProfessorSubjectLogic(_context);
+            //FinalPapersLogic finalPapersLogic = new FinalPapersLogic(_context);
+            ProfessorLogic professorLogic = new ProfessorLogic(_context);
+            Professor p = professorLogic.GetById(id);
+            List<ProfessorSubject> ps = professorSubjectLogic.GetByProfessorId(id).ToList();
+            p.ProfessorSubjects = ps;
+
+            ps.ToList().ForEach(pp => pp.SeminarPapers.ToList().ForEach(sp2 => seminarPapersLogic.Delete(sp2.SeminarPaperId)));
+            ps.ToList().ForEach(p1 => professorSubjectLogic.Delete(p1.ProfessorId, p1.SubjectId));
+            professorLogic.Delete(p.Id);
+            //p.FinalPapers.ForEach(fp => finalPapersLogic.Delete(fp.FinalPaperId));
+
+            return RedirectToAction("Users");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterStudent(RegisterStudentViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterStudent(StudentViewModel model, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +197,7 @@ namespace StudentPaperService.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterProfessor(RegisterProfessorViewModel model)
+        public async Task<IActionResult> RegisterProfessor(ProfessorViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -167,13 +223,13 @@ namespace StudentPaperService.Controllers
                     {
                         _context.ProfessorSubjects.Add(new ProfessorSubject() { ProfessorId = user.Id, SubjectId = model.SubjectsIds[i] });
                     }
-                  
+
                     _context.SaveChanges();
 
                     model.Subjects = new List<Subject>();
 
                     model.SubjectsIds.ToList().ForEach(su => model.Subjects.Add(_context.Subjects.SingleOrDefault(s => s.SubjectId == su)));
-                    
+
                     return View("RegisterProfessorSuccessful", model);
                 }
                 //TODO: hendlaj greske

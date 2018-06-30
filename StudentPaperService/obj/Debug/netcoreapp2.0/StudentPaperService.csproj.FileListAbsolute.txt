@@ -20,4 +20,3 @@ C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netco
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csprojAssemblyReference.cache

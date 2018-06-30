@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StudentPaperService.Models.AccountViewModels
 {
-    public class RegisterProfessorViewModel
+    public class ProfessorViewModel
     {
+        public Professor Professor { get; set; }
+
         [Required(ErrorMessage = "Унесите име")]
         [Display(Name = "Име")]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Име треба да има између 3 и 20 карактера")]
@@ -26,7 +25,6 @@ namespace StudentPaperService.Models.AccountViewModels
         [Display(Name = "Корисничко име")]
         [StringLength(20, MinimumLength = 7, ErrorMessage = "Корисничко име треба да има између 7 и 20 карактера")]
         public string UserName { get; set; }
-
         
         [Display(Name = "Subjects")]
         public List<Subject> Subjects { get; set; }

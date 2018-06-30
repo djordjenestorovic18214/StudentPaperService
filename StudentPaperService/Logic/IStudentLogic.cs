@@ -10,9 +10,9 @@ namespace StudentPaperService.Logic
     {
         List<Student> GetAll();
 
-        Student GetById(long studentId);
+        Student GetById(string studentId);
 
-        Student Delete(long studentId);
+        Student Delete(string studentId);
 
         //Student Update(Student student);
 

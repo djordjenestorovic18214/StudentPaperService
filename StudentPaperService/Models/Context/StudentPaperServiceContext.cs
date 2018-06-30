@@ -132,7 +132,7 @@ namespace StudentPaperService.Models.Context
 
             modelBuilder.Entity<SeminarPaper>()
                 .HasOne(p => p.ProfessorSubject)
-                .WithMany(p => p.SeminarPapers);            
+                .WithMany(p => p.SeminarPapers);
 
             modelBuilder.Entity<SeminarPaper>()
                 .HasOne(p => p.Student)

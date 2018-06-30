@@ -27,4 +27,13 @@
         }
     </tbody>
 </table>
-<a href="~/SeminarPapers/Insert" class="btn btn-primary">Додај нови семинарски рад</a>
+
+@if (User.IsInRole("student"))
+{
+    <a href="~/SeminarPapers/Insert" class="btn btn-primary">Додај нови семинарски рад</a>
+}
+else
+{
+    <a href="~/SeminarPapers/Insert" class="btn btn-primary" disabled>Додај нови семинарски рад</a>
+}
+

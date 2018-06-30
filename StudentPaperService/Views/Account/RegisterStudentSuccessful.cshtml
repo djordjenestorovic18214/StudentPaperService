@@ -1,13 +1,13 @@
-﻿@model RegisterStudentViewModel
+﻿@model StudentViewModel
 
 <h3>Успешно сте регистровали студента!</h3>
-
+<hr />
 <h4>Студент:</h4>
 
 <div class="form-group">
     @Html.Label("Име: " + @Model.FirstName)<br />
     @Html.Label("Презиме: " + @Model.LastName)<br />
-    @Html.Label("Е-пошта: " + @Model.Email)<br />
+    <label><strong>Е-пошта: + @Model.Email</strong></label><br />
     @Html.Label("Број индекса: " + @Model.IndexNumber)<br />
     @Html.Label("Корисничко име: " + @Model.UserName)<br />
 </div>
