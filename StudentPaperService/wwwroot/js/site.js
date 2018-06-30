@@ -21,3 +21,4 @@ function displaySubjectsModal() {
     console.log(choosenSubjects);
     $('#subjectChoosen').multiSelect('select', choosenSubjects);
     $("#subjectsModal").modal('show')
+}

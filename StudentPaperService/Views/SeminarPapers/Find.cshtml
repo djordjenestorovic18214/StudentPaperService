@@ -24,7 +24,7 @@
         @Html.Label("Број индекса: " + @Model.SeminarPaper.Student.IndexNumber)<br />
         <strong>Е-пошта: @Model.SeminarPaper.Student.Email</strong><br />
     </div>
-</div>
     <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
     <a asp-area="" asp-controller="SeminarPapers" asp-action="Index" class="btn btn-info btn-sm">Назад на листу</a>
     <a class="btn btn-danger btn-sm" href="~/SeminarPapers/Delete/@Model.SeminarPaper.SeminarPaperId">Обриши</a>
+</div>

@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - StudentPaperService</title>
 
     <environment include="Development">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -18,7 +19,7 @@
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="meni">
 
@@ -44,15 +45,17 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="container body-content" id="pozadina">
         @RenderBody()
-        <hr/>
-        <div class="mastfoot" id="footer">
-            <div class="inner">
-                <p>&copy; 2018 - StudentPaperService</p>
-            </div>
 
+    </div>
+    
+    <div class="mastfoot" id="footer">
+        <div class="inner">
+            <hr />
+            <p>&copy; 2018 - StudentPaperService</p>
         </div>
+
     </div>
 
     <environment include="Development">

@@ -1,5 +1,6 @@
 ﻿@model RegisterStudentViewModel
 
+<div id="pocetak2">
     <h3>Регуструј студента</h3>
 
     <div class="row">
@@ -46,8 +47,8 @@
             </form>
         </div>
     </div>
+    </div>
 
-
-@section Scripts {
+    @section Scripts {
         @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+    }
