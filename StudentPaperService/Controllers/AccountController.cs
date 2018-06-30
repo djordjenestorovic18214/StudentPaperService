@@ -150,9 +150,7 @@ namespace StudentPaperService.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
-                    UserName = model.UserName,
-
-
+                    UserName = model.UserName
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -174,11 +172,8 @@ namespace StudentPaperService.Controllers
 
                     model.Subjects = new List<Subject>();
 
-                    for (int i = 0; i < model.SubjectsIds.Length; i++)
-                    {
-                        model.Subjects.Add(_context.Subjects.SingleOrDefault(s => s.SubjectId == model.SubjectsIds[i]));
-                    }
-
+                    model.SubjectsIds.ToList().ForEach(su => model.Subjects.Add(_context.Subjects.SingleOrDefault(s => s.SubjectId == su)));
+                    
                     return View("RegisterProfessorSuccessful", model);
                 }
                 //TODO: hendlaj greske

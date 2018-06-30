@@ -29,7 +29,6 @@
                {
                 <option value="@item.SubjectId">@item.Name</option>
                }
-
             </select>
 
 
@@ -40,12 +39,12 @@
             </div>
             <div class="form-group">
                 @Html.Label("Password", "Шифра")
-                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Унесите шифру..." })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Унесите шифру..." })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.Label("ConfirmPassword", "Потврди шифру")
-                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Потврдите шифру..." })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Потврдите шифру..." })
                 @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
             <button type="submit" class="btn btn-primary">Региструј професора</button>
