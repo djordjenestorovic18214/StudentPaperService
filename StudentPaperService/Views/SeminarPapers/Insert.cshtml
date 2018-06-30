@@ -1,76 +1,77 @@
 ﻿@model SeminarPaperViewModel
 
-<form method="post" action="@Url.RouteUrl(ViewContext.RouteData.Values)" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-4">
-            <section>
-                <div class="form-group" style="margin-top:30px">
-                    @Html.Label("SeminarPaper.Name", "Тема:")
-                    @Html.TextBoxFor(m => m.SeminarPaper.Name, new { @class = "form-control", @placeholder = "Унесите тему семинарског рада..." })
-                    @Html.ValidationMessageFor(m => m.SeminarPaper.Name, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.Label("SeminarPaper.ProfessorSubject.Subject", "Предмет:")
-                    @{
-                        var subjectOptions = new List<SelectListItem>();
-                        subjectOptions.Add(new SelectListItem() { Text = "Изаберите предмет...", Value = "0", Disabled = true });
-                        foreach (var item in Model.AllSubjects)
-                        {
-                            subjectOptions.Add(new SelectListItem() { Text = item.Name, Value = item.SubjectId.ToString(), Disabled = false });
-                        }
-                    }
-                    @Html.DropDownListFor(m => m.SeminarPaper.ProfessorSubject.SubjectId,
-                            new SelectList(subjectOptions, "Value", "Text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.SeminarPaper.ProfessorSubject.SubjectId, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.Label("SeminarPaper.ProfessorSubject.Professor", "Професор(ментор):")
-                    @{
-                        var professorOptions = new List<SelectListItem>();
-                        professorOptions.Add(new SelectListItem() { Text = "Изаберите професора(ментора)...", Value = "0", Disabled = true });
-                        foreach (var item in Model.AllProfessors)
-                        {
-                            professorOptions.Add(new SelectListItem() { Text = item.FirstName + " " + item.LastName, Value = item.Id, Disabled = false });
-                        }
-                    }
-                    @Html.DropDownListFor(m => m.SeminarPaper.ProfessorSubject.ProfessorId,
-                            new SelectList(professorOptions, "Value", "Text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.SeminarPaper.ProfessorSubject.ProfessorId, "", new { @class = "text-danger" })
-                </div>
-
-                @*<label>Фотографије:</label>
-                    <div class="form-group">
-                        <div class="input-group input-file" name="Fichier1">
-                            <input type="file" name="Fotografije" class="form-control imageFile" id="inputFileChooser" onchange="dodaj()" accept="image/*" />
-                        </div>
+<div id="pocetak">
+    <form method="post" action="@Url.RouteUrl(ViewContext.RouteData.Values)" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <section>
+                    <div class="form-group" style="margin-top:30px">
+                        @Html.Label("SeminarPaper.Name", "Тема:")
+                        @Html.TextBoxFor(m => m.SeminarPaper.Name, new { @class = "form-control", @placeholder = "Унесите тему семинарског рада..." })
+                        @Html.ValidationMessageFor(m => m.SeminarPaper.Name, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="row" id="pictures-row">
-                        @if (Model.Odrednica != null)
-                        {
-                            @foreach (var f in Model.Odrednica.Fotografije)
+                    <div class="form-group">
+                        @Html.Label("SeminarPaper.ProfessorSubject.Subject", "Предмет:")
+                        @{
+                            var subjectOptions = new List<SelectListItem>();
+                            subjectOptions.Add(new SelectListItem() { Text = "Изаберите предмет...", Value = "0", Disabled = true });
+                            foreach (var item in Model.AllSubjects)
                             {
-                                <div class="photo-container col-md-3">
-                                    <div class="thumbnail">
-                                        <span class="remove-photo glyphicon glyphicon-remove"></span>
-                                        <img class="img-rounded" style="width:100%" src="data:image;base64,@Convert.ToBase64String(f.FotografijaFajl)" />
-                                    </div>
-                                </div>
+                                subjectOptions.Add(new SelectListItem() { Text = item.Name, Value = item.SubjectId.ToString(), Disabled = false });
                             }
                         }
-                    </div>*@
+                        @Html.DropDownListFor(m => m.SeminarPaper.ProfessorSubject.SubjectId,
+                                new SelectList(subjectOptions, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SeminarPaper.ProfessorSubject.SubjectId, "", new { @class = "text-danger" })
+                    </div>
 
-                <button type="submit" class="btn btn-success btn-sm">Сачувај семинарски рад</button>
-            </section>
+                    <div class="form-group">
+                        @Html.Label("SeminarPaper.ProfessorSubject.Professor", "Професор(ментор):")
+                        @{
+                            var professorOptions = new List<SelectListItem>();
+                            professorOptions.Add(new SelectListItem() { Text = "Изаберите професора(ментора)...", Value = "0", Disabled = true });
+                            foreach (var item in Model.AllProfessors)
+                            {
+                                professorOptions.Add(new SelectListItem() { Text = item.FirstName + " " + item.LastName, Value = item.Id, Disabled = false });
+                            }
+                        }
+                        @Html.DropDownListFor(m => m.SeminarPaper.ProfessorSubject.ProfessorId,
+                                new SelectList(professorOptions, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SeminarPaper.ProfessorSubject.ProfessorId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @*<label>Фотографије:</label>
+                        <div class="form-group">
+                            <div class="input-group input-file" name="Fichier1">
+                                <input type="file" name="Fotografije" class="form-control imageFile" id="inputFileChooser" onchange="dodaj()" accept="image/*" />
+                            </div>
+                        </div>
+
+                        <div class="row" id="pictures-row">
+                            @if (Model.Odrednica != null)
+                            {
+                                @foreach (var f in Model.Odrednica.Fotografije)
+                                {
+                                    <div class="photo-container col-md-3">
+                                        <div class="thumbnail">
+                                            <span class="remove-photo glyphicon glyphicon-remove"></span>
+                                            <img class="img-rounded" style="width:100%" src="data:image;base64,@Convert.ToBase64String(f.FotografijaFajl)" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>*@
+
+                    <button type="submit" class="btn btn-success btn-sm">Сачувај семинарски рад</button>
+                </section>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
-@*@if (Model.ErrorViewModel != null)
-    {
-        await Html.RenderPartialAsync("/Views/Shared/Error.cshtml", Model.ErrorViewModel);
-    }*@
+    @*@if (Model.ErrorViewModel != null)
+        {
+            await Html.RenderPartialAsync("/Views/Shared/Error.cshtml", Model.ErrorViewModel);
+        }*@
 
-
+</div>

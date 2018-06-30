@@ -16,34 +16,43 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
+
 <body>
+    
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">StudentPaperService</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Почетна</a></li>
-                    <li><a asp-area="" asp-controller="SeminarPapers" asp-action="Index">Семинарски радови</a></li>
-                    <li><a asp-area="" asp-controller="FinalPapers" asp-action="Index">Завршни радови</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
+        <div class="container" id="meni">
+
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <div class="navbar-header">
+                        <a class="masthead-brand" target="_blank" href="http://www.fon.bg.ac.rs/">
+                            <img src="~/images/FON-Logo2.png" title="ФАКУЛТЕТ ОРГАНИЗАЦИОНИХ НАУКА" id="fonlogo">
+                        </a>
+                    </div>
+
+
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Почетна</a></li>
+                            <li><a asp-area="" asp-controller="SeminarPapers" asp-action="Index">Семинарски радови</a></li>
+                            <li><a asp-area="" asp-controller="FinalPapers" asp-action="Index">Завршни радови</a></li>
+                            @await Html.PartialAsync("_LoginPartial")
+                        </ul>
+
+                    </nav>
+                </div>
             </div>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - StudentPaperService</p>
-        </footer>
+        <hr/>
+        <div class="mastfoot" id="footer">
+            <div class="inner">
+                <p>&copy; 2018 - StudentPaperService</p>
+            </div>
+
+        </div>
     </div>
 
     <environment include="Development">

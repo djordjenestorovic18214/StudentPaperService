@@ -1,29 +1,30 @@
 ﻿@model SeminarPaperViewModel
 
-<h3>Семинарски рад</h3>
+<div id="pocetak">
+    <h3>Семинарски рад</h3>
 
-<div class="form-group">
-    @Html.Label("Тема: " + @Model.SeminarPaper.Name)<br />
-    @Html.Label("Предмет: " + @Model.SeminarPaper.ProfessorSubject.Subject.Name)<br />
-    @Html.Label("Датум објављивања: " + @Model.SeminarPaper.PublishDate.ToString("dd/MM/yyyy (HH:mm)"))<br />
-    @Html.Label("Фајл: ")<br />
+    <div class="form-group">
+        @Html.Label("Тема: " + @Model.SeminarPaper.Name)<br />
+        @Html.Label("Предмет: " + @Model.SeminarPaper.ProfessorSubject.Subject.Name)<br />
+        @Html.Label("Датум објављивања: " + @Model.SeminarPaper.PublishDate.ToString("dd/MM/yyyy (HH:mm)"))<br />
+        @Html.Label("Фајл: ")<br />
+    </div>
+
+    <h4>Професор(ментор)</h4>
+    <div class="form-group">
+        @Html.Label("Име: " + @Model.SeminarPaper.ProfessorSubject.Professor.FirstName)<br />
+        @Html.Label("Презиме: " + @Model.SeminarPaper.ProfessorSubject.Professor.LastName)<br />
+        <strong>Е-пошта: @Model.SeminarPaper.ProfessorSubject.Professor.Email</strong><br />
+    </div>
+
+    <h4>Студент</h4>
+    <div class="form-group">
+        @Html.Label("Име: " + @Model.SeminarPaper.Student.FirstName)<br />
+        @Html.Label("Презиме: " + @Model.SeminarPaper.Student.LastName)<br />
+        @Html.Label("Број индекса: " + @Model.SeminarPaper.Student.IndexNumber)<br />
+        <strong>Е-пошта: @Model.SeminarPaper.Student.Email</strong><br />
+    </div>
 </div>
-
-<h4>Професор(ментор)</h4>
-<div class="form-group">
-    @Html.Label("Име: " + @Model.SeminarPaper.ProfessorSubject.Professor.FirstName)<br />
-    @Html.Label("Презиме: " + @Model.SeminarPaper.ProfessorSubject.Professor.LastName)<br />
-    <strong>Е-пошта: @Model.SeminarPaper.ProfessorSubject.Professor.Email</strong><br />
-</div>
-
-<h4>Студент</h4>
-<div class="form-group">
-    @Html.Label("Име: " + @Model.SeminarPaper.Student.FirstName)<br />
-    @Html.Label("Презиме: " + @Model.SeminarPaper.Student.LastName)<br />
-    @Html.Label("Број индекса: " + @Model.SeminarPaper.Student.IndexNumber)<br />
-    <strong>Е-пошта: @Model.SeminarPaper.Student.Email</strong><br />
-</div>
-
-<a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
-<a asp-area="" asp-controller="SeminarPapers" asp-action="Index" class="btn btn-info btn-sm">Назад на листу</a>
-<a class="btn btn-danger btn-sm" href="~/SeminarPapers/Delete/@Model.SeminarPaper.SeminarPaperId">Обриши</a>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
+    <a asp-area="" asp-controller="SeminarPapers" asp-action="Index" class="btn btn-info btn-sm">Назад на листу</a>
+    <a class="btn btn-danger btn-sm" href="~/SeminarPapers/Delete/@Model.SeminarPaper.SeminarPaperId">Обриши</a>
