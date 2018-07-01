@@ -31,3 +31,4 @@ C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\o
 C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
 C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
 C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csprojAssemblyReference.cache
