@@ -5,38 +5,38 @@
 @model LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 
-
-<h2>Пријави се</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4>Унесите корисничко име и шифру</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="UserName">Корисничко име</label>
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password">Шифра</label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="RememberMe">
-                            <input asp-for="RememberMe" />Запамти ме
-                        </label>
+<div id="pocetak2" >
+    <h2>Пријави се</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <section>
+                <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    <h4>Унесите корисничко име и шифру</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserName">Корисничко име</label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Пријава</button>
-                </div>
-            </form>
-        </section>
+                    <div class="form-group">
+                        <label asp-for="Password">Шифра</label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="RememberMe">
+                                <input asp-for="RememberMe" />Запамти ме
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Пријава</button>
+                    </div>
+                </form>
+            </section>
+        </div>
     </div>
 </div>
 

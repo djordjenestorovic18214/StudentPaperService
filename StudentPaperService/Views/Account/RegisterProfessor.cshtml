@@ -1,57 +1,80 @@
 ﻿@model ProfessorViewModel
 
-<h3>Регуструј професора</h3>
-<hr/>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Account" asp-action="RegisterProfessor" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h4>Унеси тражене податке</h4>
-            <hr />
-            <div class="form-group">
-                @Html.Label("FirstName", "Име")
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Унесите име професора..." })
-                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("LastName", "Презиме")
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Унесите презиме професора..." })
-                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("Email", "Е-пошта")
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Унесите е-пошту..." })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            </div>
+<div id="pocetak2">
+    <h3>Регуструј професора</h3>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="Account" asp-action="RegisterProfessor" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <h4>Унеси тражене податке</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.Label("FirstName", "Име")
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Унесите име професора..." })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("LastName", "Презиме")
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Унесите презиме професора..." })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Email", "Е-пошта")
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Унесите е-пошту..." })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
 
-            @Html.Label("Предмети")
-            <select id="SubjectsIds" name="SubjectsIds" class="selectpicker form-control" multiple>
-                @foreach (var item in Model.Subjects)
-                {
-                    <option value="@item.SubjectId">@item.Name</option>
-                }
-            </select>
+                @Html.Label("Предмети")
+                <button type="button" class="btn btn-info" data-toggle="modal" onclick="displaySubjectsModal()">Изабери предмете</button>
 
-            <div class="form-group">
-                @Html.Label("UserName", "Корисничко име")
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Унесите корисничко име..." })
-                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("Password", "Шифра")
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Унесите шифру..." })
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("ConfirmPassword", "Потврди шифру")
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Потврдите шифру..." })
-                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-            </div>
-            <button type="submit" class="btn btn-primary">Региструј професора</button>
-        </form>
+                <div id="subjectModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <label class="modal-title">Предмети</label>
+                            </div>
+                            <div class="modal-body" id="subjectModalBody">
+                                <select class="selectpicker form-control" data-live-search="true" id="subjectChoosen" multiple>
+                                    @foreach (var s in Model.Subjects)
+                                    {
+                                        <option value="@s.SubjectId">@s.Name</option>
+                                    }
+                                </select>
+                                <hr />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="insertSubjectsForNewProfessor()">Potvrdi</button>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("UserName", "Корисничко име")
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Унесите корисничко име..." })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Password", "Шифра")
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Унесите шифру..." })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ConfirmPassword", "Потврди шифру")
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Потврдите шифру..." })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary">Региструј професора</button>
+            </form>
+
+
+        </div>
     </div>
 </div>
 
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }

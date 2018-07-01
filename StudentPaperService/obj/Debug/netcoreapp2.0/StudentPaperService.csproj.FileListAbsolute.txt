@@ -20,3 +20,14 @@ C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netco
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.deps.json
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.json
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.dev.json
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.dll
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.pdb
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csproj.CoreCompileInputs.cache
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfoInputs.cache
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
+C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb

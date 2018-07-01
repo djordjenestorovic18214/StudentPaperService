@@ -1,53 +1,53 @@
 ﻿@model StudentViewModel
+<div id="pocetak2">
+    <h3>Регуструј студента</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="Account" asp-action="RegisterStudent" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <h4>Унеси тражене податке</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.Label("FirstName", "Име")
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Унесите име студента..." })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("LastName", "Презиме")
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Унесите презиме студента..." })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Email", "Е-пошта")
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Унесите е-пошту..." })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("IndexNumber", "Број индекса")
+                    @Html.TextBoxFor(m => m.IndexNumber, new { @class = "form-control", @placeholder = "Унесите број индекса..." })
+                    @Html.ValidationMessageFor(m => m.IndexNumber, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("UserName", "Корисничко име")
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Унесите корисничко име..." })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Password", "Шифра")
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Унесите шифру..." })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ConfirmPassword", "Потврди шифру")
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Потврдите шифру..." })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
 
-<h3>Регуструј студента</h3>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Account" asp-action="RegisterStudent" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h4>Унеси тражене податке</h4>
-            <hr />
-            <div class="form-group">
-                @Html.Label("FirstName", "Име")
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Унесите име студента..." })
-                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("LastName", "Презиме")
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Унесите презиме студента..." })
-                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("Email", "Е-пошта")
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Унесите е-пошту..." })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("IndexNumber", "Број индекса")
-                @Html.TextBoxFor(m => m.IndexNumber, new { @class = "form-control", @placeholder = "Унесите број индекса..." })
-                @Html.ValidationMessageFor(m => m.IndexNumber, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("UserName", "Корисничко име")
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Унесите корисничко име..." })
-                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("Password", "Шифра")
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Унесите шифру..." })
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.Label("ConfirmPassword", "Потврди шифру")
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Потврдите шифру..." })
-                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-            </div>
-
-            <button type="submit" class="btn btn-primary">Региструј студента</button>
-        </form>
+                <button type="submit" class="btn btn-primary">Региструј студента</button>
+            </form>
+        </div>
     </div>
 </div>
-
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
