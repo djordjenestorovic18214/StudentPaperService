@@ -7,19 +7,19 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav masthead-nav navbar-right">
             @if (User.IsInRole("admin"))
             {
                 <li><a asp-area="" asp-controller="Account" asp-action="Users">Корисници</a></li>
             }
 
-            <li><button type="submit" class="btn btn-link navbar-btn navbar-link">Одјави се</button></li>
+            <li ><button type="submit" class="btn btn-link navbar-btn navbar-link">Одјави се</button></li>
         </ul>
     </form>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav masthead-nav navbar-right">
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Пријави се</a></li>
     </ul>
 }

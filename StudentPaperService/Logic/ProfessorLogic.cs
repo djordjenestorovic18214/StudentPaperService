@@ -17,11 +17,11 @@ namespace StudentPaperService.Logic
             _context = context;
         }
 
-        public Professor Delete(long professorId)
+        public Professor Delete(string professorId)
         {
             try
             {
-                Professor requestedProfessor = _context.Professors
+                Professor requestedProfessor = _context.Professors                    
                     .FirstOrDefault(p => p.Id.Equals(professorId));
                 if (requestedProfessor != null)
                 {
@@ -33,7 +33,7 @@ namespace StudentPaperService.Logic
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error while trying to find professor! Error: {ex.Message}");
+                throw new Exception($"Error while trying to delete professor! Error: {ex.Message}");
             }
         }
 
@@ -52,19 +52,19 @@ namespace StudentPaperService.Logic
             }            
         }
 
-        public Professor GetById(long professorId)
+        public Professor GetById(string professorId)
         {
             try
             {
                 return _context.Professors
                     .Include(prof => prof.FinalPapers)
-                    .Include(prof => prof.ProfessorSubjects)
+                    .Include(prof => prof.ProfessorSubjects)                    
                     .ToList()
                     .Find(prof => prof.Id.Equals(professorId));                
             }
             catch (Exception ex)
             {
-                throw new Exception($"Cannot return all professors! Error: {ex.Message}");
+                throw new Exception($"Error while trying to find professor! Error: {ex.Message}");
             }
         }
     }

@@ -1,15 +1,28 @@
-﻿@model RegisterProfessorViewModel
+﻿@model ProfessorViewModel
 
-<h3>Успешно сте регистровали професора!</h3>
+<div id="pocetak">
+    <h3>Успешно сте регистровали професора!</h3>
+    <hr />
+    <h4>Професор:</h4>
 
-<h4>Професор:</h4>
-
-<div class="form-group">
-    @Html.Label("Име: " + @Model.FirstName)<br />
-    @Html.Label("Презиме: " + @Model.LastName)<br />
-    @Html.Label("Е-пошта: " + @Model.Email)<br />
-    @Html.Label("Предмети: ")<br />
-    @Html.Label("Корисничко име: " + @Model.UserName)<br />
+    <div class="form-group">
+        @Html.Label("Име: " + @Model.FirstName)<br />
+        @Html.Label("Презиме: " + @Model.LastName)<br />
+        <label><strong>Е-пошта: + @Model.Email</strong></label><br />
+        @Html.Label("Предмети: ")
+        @for (int i = 0; i < Model.Subjects.Count; i++)
+        {
+            @if (i == Model.Subjects.Count - 1)
+            {
+                <strong>@Model.Subjects.ElementAt(i).Name</strong><br>
+            }
+            else
+            {
+                <strong>@Model.Subjects.ElementAt(i).Name,</strong>
+            }
+        }
+        @Html.Label("Корисничко име: " + @Model.UserName)<br />
+    </div>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
+    <a asp-area="" asp-controller="Account" asp-action="RegisterStudent" class="btn btn-info btn-sm">Региструј новог професора</a>
 </div>
-<a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Почетна</a>
-<a asp-area="" asp-controller="Account" asp-action="RegisterStudent" class="btn btn-info btn-sm">Региструј новог професора</a>

@@ -7,12 +7,12 @@ namespace StudentPaperService.Logic
     {
         List<ProfessorSubject> GetByProfessorId(string professorId);
 
-        List<ProfessorSubject> GetBySubjectId(int subjectId);
+        List<ProfessorSubject> GetBySubjectId(long subjectId);
 
-        ProfessorSubject GetOne(string professorId, int subjectId);
+        ProfessorSubject GetOne(string professorId, long subjectId);
 
-        ProfessorSubject Insert(string professorId, int subjectId);
+        ProfessorSubject Insert(string professorId, long subjectId);
 
-        ProfessorSubject Delete(string professorId, int subjectId);
+        ProfessorSubject Delete(string professorId, long subjectId);
     }
 }

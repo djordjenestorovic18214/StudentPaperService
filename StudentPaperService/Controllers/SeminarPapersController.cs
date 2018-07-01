@@ -62,7 +62,7 @@ namespace StudentPaperService.Controllers
             }
         }
 
-        [HttpGet]
+        [Authorize(Roles = "student")]
         public IActionResult Insert()
         {
             try
@@ -83,6 +83,7 @@ namespace StudentPaperService.Controllers
             }
         }
 
+        [Authorize(Roles = "student")]
         [HttpPost]
         public IActionResult Insert(SeminarPaperViewModel seminarPaperViewModel, byte[] paperFile)
         {

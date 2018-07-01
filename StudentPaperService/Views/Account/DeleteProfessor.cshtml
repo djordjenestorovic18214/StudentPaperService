@@ -1,0 +1,19 @@
+﻿@model ProfessorViewModel
+
+<h3>Да ли сте сигурни да желите да избришете професора?</h3>
+<hr />
+<h4>Професор:</h4>
+
+<form asp-controller="Account" asp-action="DeleteProfessor" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+    <div class="form-group">
+        @Html.Label("Име: " + @Model.Professor.FirstName)<br />
+        @Html.Label("Презиме: " + @Model.Professor.LastName)<br />
+        <label><strong>Е-пошта: @Model.Professor.Email</strong></label><br />
+        @Html.Label("Предмети: ")<br />
+        @Html.Label("Корисничко име: " + @Model.Professor.UserName)<br />
+        @Html.Label("Број семинарских радова: ")<br />
+        @Html.Label("Број завршних радова: " + @Model.Professor.FinalPapers.Count)<br />
+    </div>
+    <button type="submit" class="btn btn-danger btn-sm">Обриши</button>
+    <a asp-area="" asp-controller="Account" asp-action="Users" class="btn btn-info btn-sm">Назад</a>
+</form>
