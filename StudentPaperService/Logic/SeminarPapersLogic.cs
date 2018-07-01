@@ -62,9 +62,10 @@ namespace StudentPaperService.Logic
             }
         }
 
-        public void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile)
+        public void Insert(SeminarPaper seminarPaper)
         {
-            throw new NotImplementedException();
+            _context.SeminarPapers.Add(seminarPaper);
+            _context.SaveChanges();
         }
 
         public SeminarPaper Update(SeminarPaper seminarPaper)

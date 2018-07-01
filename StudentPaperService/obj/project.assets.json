@@ -13259,23 +13259,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MSG GLOBAL SEE\\.nuget\\packages\\": {},
+    "C:\\Users\\ircclient\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MSG GLOBAL SEE\\Documents\\ITEH\\StudentPaperService\\StudentPaperService\\StudentPaperService.csproj",
+      "projectUniqueName": "C:\\Users\\ircclient\\source\\repos\\StudentPaperService\\StudentPaperService\\StudentPaperService.csproj",
       "projectName": "StudentPaperService",
-      "projectPath": "C:\\Users\\MSG GLOBAL SEE\\Documents\\ITEH\\StudentPaperService\\StudentPaperService\\StudentPaperService.csproj",
-      "packagesPath": "C:\\Users\\MSG GLOBAL SEE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MSG GLOBAL SEE\\Documents\\ITEH\\StudentPaperService\\StudentPaperService\\obj\\",
+      "projectPath": "C:\\Users\\ircclient\\source\\repos\\StudentPaperService\\StudentPaperService\\StudentPaperService.csproj",
+      "packagesPath": "C:\\Users\\ircclient\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ircclient\\source\\repos\\StudentPaperService\\StudentPaperService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\MSG GLOBAL SEE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ircclient\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

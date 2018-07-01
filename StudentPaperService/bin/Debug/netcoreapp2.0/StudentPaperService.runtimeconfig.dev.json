@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\MSG GLOBAL SEE\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\MSG GLOBAL SEE\\.nuget\\packages",
+      "C:\\Users\\ircclient\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\ircclient\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }

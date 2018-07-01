@@ -1,14 +1,3 @@
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.deps.json
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.json
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.dev.json
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.dll
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.pdb
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csproj.CoreCompileInputs.cache
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfoInputs.cache
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
-C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.deps.json
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.json
 C:\Users\HP\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.dev.json
@@ -32,3 +21,15 @@ C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\o
 C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
 C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
 C:\Users\MSG GLOBAL SEE\Documents\ITEH\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csprojAssemblyReference.cache
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.deps.json
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.json
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.runtimeconfig.dev.json
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.dll
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\bin\Debug\netcoreapp2.0\StudentPaperService.pdb
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csproj.CoreCompileInputs.cache
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfoInputs.cache
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.AssemblyInfo.cs
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.dll
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.pdb
+C:\Users\ircclient\source\repos\StudentPaperService\StudentPaperService\obj\Debug\netcoreapp2.0\StudentPaperService.csprojAssemblyReference.cache

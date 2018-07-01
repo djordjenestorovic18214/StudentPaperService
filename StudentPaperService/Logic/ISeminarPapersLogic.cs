@@ -13,6 +13,6 @@ namespace StudentPaperService.Logic
 
         SeminarPaper Update(SeminarPaper seminarPaper);
 
-        void Insert(SeminarPaper seminarPaper, byte[] seminarPaperFile);        
+        void Insert(SeminarPaper seminarPaper);        
     }
 }

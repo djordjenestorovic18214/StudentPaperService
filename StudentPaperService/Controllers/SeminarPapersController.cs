@@ -9,6 +9,8 @@ using StudentPaperService.Services;
 using StudentPaperService.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace StudentPaperService.Controllers
 {
@@ -32,7 +34,7 @@ namespace StudentPaperService.Controllers
             _logger = logger;
             _context = context;
         }
-        
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -62,13 +64,36 @@ namespace StudentPaperService.Controllers
             }
         }
 
+        //[HttpPost("UploadFiles")]
+        //public async Task<IActionResult> UploadFiles(IFormFile file)
+        //{
+        //    long size = file.Length;
+
+        //    // full path to file in temp location
+        //    var filePath = Path.GetTempFileName();
+
+        //    if (file.Length > 0)
+        //    {
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+        //    }
+
+        //    // process uploaded files
+        //    // Don't rely on or trust the FileName property without validation.
+
+        //    return Ok(new {size, filePath });
+        //}
+
+
         [Authorize(Roles = "student")]
         public IActionResult Insert()
         {
             try
             {
                 ISeminarPapersLogic seminarPaperLogic = new SeminarPapersLogic(_context);
-                ISubjectLogic subjectLogic = new SubjectLogic(_context);
+                ISubjectLogic subjectLogic = new SubjectLogic(_context);                
                 IProfessorLogic professorLogic = new ProfessorLogic(_context);
                 IProfessorSubjectLogic professorSubjectLogic = new ProfessorSubjectLogic(_context);
                 SeminarPaperViewModel spvm = new SeminarPaperViewModel();
@@ -85,16 +110,24 @@ namespace StudentPaperService.Controllers
 
         [Authorize(Roles = "student")]
         [HttpPost]
-        public IActionResult Insert(SeminarPaperViewModel seminarPaperViewModel, byte[] paperFile)
+        public IActionResult Insert(SeminarPaperViewModel seminarPaperViewModel)
         {
             ISeminarPapersLogic seminarPaperLogic = new SeminarPapersLogic(_context);
             IProfessorLogic professorLogic = new ProfessorLogic(_context);
+            IStudentLogic studentLogic = new StudentLogic(_context);
             ISubjectLogic subjectLogic = new SubjectLogic(_context);
             IProfessorSubjectLogic professorSubjectLogic = new ProfessorSubjectLogic(_context);
 
-            seminarPaperViewModel.SeminarPaper.PublishDate = DateTime.Now;
+            ProfessorSubject ps = professorSubjectLogic.GetOne(seminarPaperViewModel.ProfessorId, seminarPaperViewModel.SubjectId) ?? throw new Exception();
+
+            SeminarPaper s = new SeminarPaper();
+            s.Name = seminarPaperViewModel.Name;
+            s.ProfessorSubject = ps;
+            s.PublishDate = DateTime.Now;            
+            s.Student = studentLogic.GetById(_userManager.GetUserId(User));
+            s.PaperFile = new byte[20];
             SeminarPaperViewModel spvm = new SeminarPaperViewModel();
-            spvm.SeminarPaper = new SeminarPaper();
+            spvm.SeminarPaper = s;
 
             try
             {
@@ -102,19 +135,27 @@ namespace StudentPaperService.Controllers
                 {
                     spvm.AllProfessors = professorLogic.GetAll();
                     spvm.AllSubjects = subjectLogic.GetAll();
-                    spvm.SeminarPaper.Name = seminarPaperViewModel.SeminarPaper.Name ?? "";
-                    spvm.SeminarPaper.PaperFile = paperFile;
+                    spvm.SeminarPaper.Name = seminarPaperViewModel.Name ?? "";
+                    spvm.SeminarPaper.PaperFile = null;
                     return View("Insert", spvm);
                 }
-                seminarPaperLogic.Insert(seminarPaperViewModel.SeminarPaper, paperFile);
+
+                //using (var memoryStream = new MemoryStream())
+                //{
+                //    await seminarPaperViewModel.File.CopyToAsync(memoryStream);
+                //    spvm.SeminarPaper.PaperFile = memoryStream.ToArray();
+                //}
+
+
+                seminarPaperLogic.Insert(s);
                 return RedirectToAction("Index", "SeminarPapers");
             }
             catch (Exception ex)
             {
                 spvm.AllProfessors = professorLogic.GetAll();
                 spvm.AllSubjects = subjectLogic.GetAll();
-                spvm.SeminarPaper.Name = seminarPaperViewModel.SeminarPaper.Name ?? "";
-                spvm.SeminarPaper.PaperFile = paperFile;
+                spvm.SeminarPaper.Name = seminarPaperViewModel.Name ?? "";
+                spvm.SeminarPaper.PaperFile = null;
                 return View("Insert", spvm);
             }
         }
