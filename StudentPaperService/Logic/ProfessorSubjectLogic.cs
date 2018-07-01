@@ -16,7 +16,7 @@ namespace StudentPaperService.Logic
             _context = context;
         }
 
-        public ProfessorSubject Delete(string professorId, int subjectId)
+        public ProfessorSubject Delete(string professorId, long subjectId)
         {
             try
             {
@@ -38,7 +38,8 @@ namespace StudentPaperService.Logic
             {
                 return _context.ProfessorSubjects
                     .Include(ps => ps.Professor)
-                    .Include(ps => ps.Subject)                    
+                    .Include(ps => ps.Subject)
+                    .Include(ps => ps.SeminarPapers)
                     .Where(ps => ps.ProfessorId.Equals(professorId))
                     .ToList();
             }
@@ -48,13 +49,14 @@ namespace StudentPaperService.Logic
             }
         }
 
-        public List<ProfessorSubject> GetBySubjectId(int subjectId)
+        public List<ProfessorSubject> GetBySubjectId(long subjectId)
         {
             try
             {
                 return _context.ProfessorSubjects
                     .Include(ps => ps.Subject)
                     .Include(ps => ps.Professor)
+                    .Include(ps => ps.SeminarPapers)
                     .Where(ps => ps.SubjectId == subjectId)
                     .ToList();
             }
@@ -64,11 +66,26 @@ namespace StudentPaperService.Logic
             }
         }
 
-        public ProfessorSubject GetOne(string professorId, int subjectId)
+        public ProfessorSubject GetOne(string professorId, long subjectId)
         {
             try
             {
-                return _context.ProfessorSubjects.Find(professorId, subjectId);
+                var professor = _context.Professors.Find(professorId);
+                var subject = _context.Subjects.Find(subjectId);
+
+                if (professor != null && subject != null)
+                {
+                    return _context.ProfessorSubjects
+                    .Include(ps => ps.SeminarPapers)
+                    .Include(ps => ps.Subject)
+                    .Include(ps => ps.Professor)
+                    .ToList()
+                    .SingleOrDefault(ps => ps.ProfessorId.Equals(professorId) && ps.SubjectId == subjectId);
+                }
+                else
+                {
+                    throw new Exception($"Professor or subject that you have choosed doesn't exist!");
+                }
             }
             catch (Exception ex)
             {
@@ -76,7 +93,7 @@ namespace StudentPaperService.Logic
             }
         }
 
-        public ProfessorSubject Insert(string professorId, int subjectId)
+        public ProfessorSubject Insert(string professorId, long subjectId)
         {
             try
             {

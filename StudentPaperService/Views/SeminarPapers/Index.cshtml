@@ -1,5 +1,4 @@
 ﻿@model SeminarPaperViewModel
-
 <div id="pocetak">
     <h1 style="margin-top:30px; margin-bottom:30px">Семинарски радови</h1>
 
@@ -28,5 +27,13 @@
             }
         </tbody>
     </table>
-    <a href="~/SeminarPapers/Insert" class="btn btn-primary">Додај нови семинарски рад</a>
+
+    @if (User.IsInRole("student"))
+    {
+        <a href="~/SeminarPapers/Insert" class="btn btn-primary">Додај нови семинарски рад</a>
+    }
+    else
+    {
+        <a href="~/SeminarPapers/Insert" class="btn btn-primary" disabled>Додај нови семинарски рад</a>
+    }
 </div>

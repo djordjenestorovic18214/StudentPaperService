@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentPaperService.Models.AccountViewModels
 {
-    public class RegisterStudentViewModel
+    public class StudentViewModel
     {
+        public Student Student{ get; set; }
+
         [Required(ErrorMessage = "Унесите име")]
         [Display(Name = "Име")]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Име треба да има између 3 и 20 карактера")]

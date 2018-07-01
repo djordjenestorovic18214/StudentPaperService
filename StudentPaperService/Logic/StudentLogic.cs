@@ -17,7 +17,7 @@ namespace StudentPaperService.Logic
             _context = context;
         }
 
-        public Student Delete(long studentId)
+        public Student Delete(string studentId)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace StudentPaperService.Logic
             }
         }
 
-        public Student GetById(long studentId)
+        public Student GetById(string studentId)
         {
             try
             {
